@@ -14,3 +14,12 @@ steps:
     repository: '$(imageName)'
     command: 'build'
     Dockerfile: 'Dockerfile'
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Azure DevOps Svc'
+    azureContainerRegistry: '{"loginServer":"troycbsdevacr.azurecr.io", "id" : "/subscriptions/bdcd75fe-8ec2-4b3f-b3b7-425b5be3bac3/resourceGroups/devops-acr-rg/providers/Microsoft.ContainerRegistry/registries/troycbsdevacr"}'
+    dockerComposeFile: 'Dockerfile'
+    action: 'Push services'
+    includeSourceTags: true
+    includeLatestTag: true
